@@ -2,10 +2,12 @@ const request = require("supertest");
 const app = require("../../app");
 const { connectDb, closeDb } = require("../../DB/connectDB");
 const { MONGODB_URI } = require("../../config/server.config");
+const { loadPlanetsData } = require("../../models/planets.model");
 
 describe("Launches API", () => {
   beforeAll(async () => {
     await connectDb(MONGODB_URI);
+    await loadPlanetsData();
   });
 
   afterAll(async () => {
